@@ -21,7 +21,7 @@ def evolve(str):
 
     return new_str
 
-for n in range(5):
+for n in range(6):
     str = evolve(str)
 
 wn = turtle.Screen()
@@ -34,24 +34,25 @@ mrk.turtlesize(stretch_wid=0.2, stretch_len=0.2)
 mrk.degrees()
 mrk.speed("fastest")
 mrk.penup()
-mrk.setpos(-300, -300)
+mrk.setpos(-600, -300)
 mrk.pendown()
 mrk.seth(45)
 
-for ch in str:
-    if(ch == 'F'):
+while str:
+    if(str[0] == 'F'):
         mrk.forward(6)
-    elif(ch == '-'):
+    elif(str[0] == '-'):
         mrk.right(20)
-    elif(ch == '+'):
+    elif(str[0] == '+'):
         mrk.left(20)
-    elif(ch == '['):
+    elif(str[0] == '['):
         queue.append([mrk.pos(), mrk.heading()])
-    elif(ch == ']'):
+    elif(str[0] == ']'):
         data = queue.pop()
         mrk.penup()
         mrk.setpos(data[0])
         mrk.seth(data[1])
         mrk.pendown()
+    str = str[1:]
 
 wn.mainloop()
